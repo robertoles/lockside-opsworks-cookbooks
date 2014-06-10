@@ -3,7 +3,7 @@ node[:deploy].each do |application, deploy|
 
   template "#{deploy[:deploy_to]}/shared/config/secrets.yml" do
     source "secrets.yml.erb"
-    cookbook 'rails'
+    cookbook 'custom_rails'
     mode "0660"
     group deploy[:group]
     owner deploy[:user]
@@ -11,8 +11,8 @@ node[:deploy].each do |application, deploy|
 
     notifies :run, "execute[restart Rails app #{application}]"
 
-    only_if do
-      deploy[:secrets].present? && File.directory?("#{deploy[:deploy_to]}/shared/config/")
-    end
+    #only_if do
+    #  deploy[:secrets].present? && File.directory?("#{deploy[:deploy_to]}/shared/config/")
+    #end
   end
 end
