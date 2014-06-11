@@ -1,6 +1,8 @@
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
 
+  Chef::Log.info("Setting up Rails config secrets")
+
   template "#{deploy[:deploy_to]}/shared/config/secrets.yml" do
     source "secrets.yml.erb"
     cookbook 'custom_rails'
