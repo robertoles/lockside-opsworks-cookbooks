@@ -11,7 +11,7 @@ node[:deploy].each do |application, deploy|
     owner deploy[:user]
     variables(:secrets => deploy[:secrets], :environment => deploy[:rails_env])
 
-    notifies :run, "execute[restart Rails app #{application}]"
+    #notifies :run, "execute[restart Rails app #{application}]"
 
     #only_if do
     #  deploy[:secrets].present? && File.directory?("#{deploy[:deploy_to]}/shared/config/")
